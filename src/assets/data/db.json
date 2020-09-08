@@ -1,0 +1,32 @@
+{
+  "products": [
+    {
+      "productName": "All Star",
+      "productDescription": "New All Star",
+      "productPrice": 1200,
+      "id": 1
+    },
+    {
+      "id": 2,
+      "productName": "Nike",
+      "productDescription": "New nike",
+      "productPrice": 1900
+    },
+    {
+      "id": 3,
+      "productName": "Adidas",
+      "productDescription": "New Adidas",
+      "productPrice": 1500
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

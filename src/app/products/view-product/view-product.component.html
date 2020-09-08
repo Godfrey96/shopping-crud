@@ -1,0 +1,16 @@
+<div class="card mt-4">
+  <!--<img class="card-img-top img-fluid" src="{{productDetails.productImage}}" alt="">-->
+  <div class="card-body">
+    <h3 class="card-title">{{productDetails.productName}}</h3>
+    <button class="btn btn-primary">
+      <a style="color: white;" href="products/update-product/{{ productDetails.id }}">Update Product</a>
+    </button> |
+    <button class="btn btn-danger">
+      <a style="color: white;" href="products/delete-product/{{ productDetails.id }}">Delete Product</a>
+    </button>
+    <h4>R{{productDetails.productPrice}}</h4>
+    <p class="card-text">{{productDetails.productDescription}}</p>
+  </div>
+</div>
+<!-- /.card -->
+
