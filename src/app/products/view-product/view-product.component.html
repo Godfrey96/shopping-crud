@@ -1,16 +1,53 @@
 <div class="card mt-4">
-  <!--<img class="card-img-top img-fluid" src="{{productDetails.productImage}}" alt="">-->
+  <img class="card-img-top img-fluid imgSize" src="{{productDetails.productImage}}" alt="">
   <div class="card-body">
     <h3 class="card-title">{{productDetails.productName}}</h3>
     <button class="btn btn-primary">
       <a style="color: white;" href="products/update-product/{{ productDetails.id }}">Update Product</a>
     </button> |
-    <button class="btn btn-danger">
-      <a style="color: white;" href="products/delete-product/{{ productDetails.id }}">Delete Product</a>
+    <!--<span *ngIf="confirmDelete">
+      <span>Are you sure you want to delete this product?</span>
+      <button class="btn btn-danger" (click)="deleteProduct()">Yes</button>
+      <button class="btn btn-primary" (click)="confirmDelete=false">No</button>
+    </span>-->
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" *ngIf="!confirmDelete"
+    (click)="confirmDelete=true">
+      Delete
     </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-danger" id="exampleModalLabel">Delete Product</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <span>Are you sure you want to delete this product?</span>
+          </div>
+          <div class="modal-footer">
+            <span *ngIf="confirmDelete">
+              <button class="btn btn-danger" style="margin-right: 10px;" (click)="deleteProduct()">Yes</button>
+              <button class="btn btn-primary" (click)="confirmDelete=false">No</button>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--<button class="btn btn-danger" *ngIf="!confirmDelete"
+      (click)="confirmDelete=true">Delete
+    </button>-->
+
     <h4>R{{productDetails.productPrice}}</h4>
     <p class="card-text">{{productDetails.productDescription}}</p>
   </div>
 </div>
 <!-- /.card -->
+
 

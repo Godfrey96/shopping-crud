@@ -1,39 +1,75 @@
 <h2 class="bg-light mb-2">Add New Product</h2>
-<form (ngSubmit)="addNewProduct(productForm)" #productForm="ngForm" novalidate>
+<form [formGroup]="createForm" (ngSubmit)="onSubmit()">
 
   <div class="form-group">
-    <div class="col-md-6 mb-3">
-      <label class="form-label">Product Name</label>
-      <input type="text" class="form-control" required name="productName" ngModel>
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Product Name</label>
+        <input type="text" class="form-control"
+        formControlName="productName"
+        [ngClass]="{'is-invalid':(f.productName.dirty || f.productName.touched || productSubmitted) && f.productName.errors }">
+        <span class="error-block" *ngIf="!f.productName.valid && (f.productName.touched || productSubmitted)">
+          <p class="alert alert-danger title">Please provide product name</p>
+        </span>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Category Id</label>
+        <input type="text" class="form-control"
+        formControlName="categoryId"
+        [ngClass]="{'is-invalid':(f.categoryId.dirty || f.categoryId.touched || productSubmitted) && f.categoryId.errors }">
+        <span class="error-block" *ngIf="!f.categoryId.valid && (f.categoryId.touched || productSubmitted)">
+          <p class="alert alert-danger title">Please provide category ID</p>
+        </span>
+      </div>
     </div>
   </div>
 
   <div class="form-group">
     <div class="col-md-6 mb-3">
       <label class="form-label">Description</label>
-      <textarea type="text" class="form-control" required name="productDescription" ngModel>
+      <textarea type="text" class="form-control"
+      formControlName="productDescription"
+      [ngClass]="{'is-invalid':(f.productName.dirty || f.productName.touched || productSubmitted) && f.productName.errors }">
       </textarea>
+      <span class="error-block" *ngIf="!f.productDescription.valid && (f.productDescription.touched || productSubmitted)">
+        <p class="alert alert-danger title">Please provide product description</p>
+      </span>
     </div>
   </div>
 
-  <!--<div class="form-group">
+  <div class="form-group">
     <div class="col-md-6 mb-3">
-      <label class="form-label">Product Image</label>
-      <!--<img [src]="imgURL" alt="" *ngIf="imgURL">
-      <input type="file" id="image" class="form-control" required name="productImage" ngModel>
+      <label class="form-label">Product Image </label>
+      <!--<img [src]="imgURL" alt="" *ngIf="imgURL">-->
+      <!--<input type="file" (change)="onFileSelected($event)" id="image" class="form-control" formControlName="productImage">-->
+      <input #fileInput class="form-control" formControlName="productImage"  type="file" accept="image/*" (change)="onFileSelected($event)">
+      <!--<button [hidden]="upLoadedFile" type="button" class="btn btn-outline-primary" (click)="fileInput.click()">
+        Upload
+      </button>-->
     </div>
-  </div>-->
+  </div>
 
   <div class="form-group">
     <div class="col-md-6 mb-3">
       <label class="form-label">Product Price</label>
-      <input type="number" class="form-control" required name="productPrice" ngModel>
+      <input type="number" class="form-control" formControlName="productPrice"
+      [ngClass]="{'is-invalid': f.productPrice.errors && (f.productPrice.dirty  || f.productPrice.touched || productSubmitted) }">
+      <span class="error-block" *ngIf="!f.productPrice.valid && (f.productPrice.touched || f.productPrice.dirty)">
+        <p class="alert alert-danger title">Please provide product price</p>
+      </span>
     </div>
   </div>
   <div class="form-group">
     <div class="col-md-6 mb-3">
-      <button class="btn btn-primary" type="submit" style="margin-bottom: 10px;" [disabled]="!productForm.valid">Create Product</button>
+      <button class="btn btn-primary" type="submit" style="margin-bottom: 10px;" [disabled]="!createForm.valid">Create Product</button>
     </div>
   </div>
   <h3 class="center-block text-center">{{displayMessage}}</h3>
 </form>
+
+<!--FORM {{createForm.value | json}}
+<br/>
+<br/>
+MODEL {{product | json}}-->
+
